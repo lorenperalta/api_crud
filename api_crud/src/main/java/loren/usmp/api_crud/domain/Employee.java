@@ -2,23 +2,29 @@ package loren.usmp.api_crud.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table()
+@Table(name = "t_empleao")
 public class Employee {
 
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Integer id;
 
     public String nombre;
-    public String apellido;
+    public double precio; 
 
-    public Employee(String nombre, String apellido) {
-        this.nombre = nombre;
-        this.apellido = apellido;
+
+
+    public Integer getId() {
+        return this.id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -29,12 +35,15 @@ public class Employee {
         this.nombre = nombre;
     }
 
-    public String getApellido() {
-        return this.apellido;
+    public double getPrecio() {
+        return this.precio;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public void setPrecio(double precio) {
+        this.precio = precio;
     }
+    
+
+    
     
 }
