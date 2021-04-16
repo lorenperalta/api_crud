@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-ApiCrudApplication<api_crud>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "loren.usmp.api_crud.ApiCrudApplication",
+            "projectName": "api_crud",
+            "args": ""
+        }
+    ]
+}

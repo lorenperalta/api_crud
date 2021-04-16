@@ -32,7 +32,6 @@ public class HelloControler {
     
     @RequestMapping("/empleaos")
     public List<Employee> index(){
-        
         return employeeRepository.findAll();
     }
 
@@ -42,11 +41,11 @@ public class HelloControler {
             employeeRepository.findAll(), HttpStatus.OK);
     }
 
-    @PostMapping(value = "/empleaos", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/empleao", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Integer> create(@RequestBody Employee e){
         employeeRepository.save(e);
         employeeRepository.flush();
-        return new ResponseEntity<Integer>(e.getId(),HttpStatus.CREATED);
+        return new ResponseEntity<Integer>(HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/empleaos/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -65,7 +64,7 @@ public class HelloControler {
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @PutMapping(value = "/empleaos", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/empleao", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Employee> update(@RequestBody Employee e){
         create(e);
         return new ResponseEntity<Employee>(HttpStatus.OK);

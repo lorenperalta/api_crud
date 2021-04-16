@@ -2,25 +2,25 @@
 GET http://localhost:8080/empleaos HTTP/1.1
 Accept: application/json
 
-GET http://localhost:8080/empleaos/2 HTTP/1.1
+GET http://localhost:8080/empleaos/6 HTTP/1.1
 Accept: application/json
 
-DELETE http://localhost:8080/empleaos/3 HTTP/1.1
+DELETE http://localhost:8080/empleaos/5 HTTP/1.1
 Accept: application/json
 
-PUT http://localhost:8080/empleaos HTTP/1.1
+PUT http://localhost:8080/empleao HTTP/1.1
 Content-Type: application/json
 
 {
-    "id" : "5",
-    "nombre" : "Orestis",
+    "id" : "8",
+    "nombre" : "Marselo",
     "precio" : 34.2
 }
 
-POST http://localhost:8080/empleaos HTTP/1.1
+POST http://localhost:8080/empleao HTTP/1.1
 Content-Type: application/json
 
 {
-    "precio" : "12.43",
-    "nombre" : "nose"
+    "nombre" : "Marselo",
+    "precio" : 3.3
 }
