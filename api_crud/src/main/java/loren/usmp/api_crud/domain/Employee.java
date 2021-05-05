@@ -14,10 +14,9 @@ public class Employee {
     @Id
     private Integer id;
 
-    public String nombre;
-    public double precio; 
-
-
+    public String Usuario;
+    public String Password;
+    
 
     public Integer getId() {
         return this.id;
@@ -27,22 +26,21 @@ public class Employee {
         this.id = id;
     }
 
-    public String getNombre() {
-        return this.nombre;
+    public String getUsuario() {
+        return this.Usuario;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setUsuario(String Usuario) {
+        this.Usuario = Usuario;
     }
 
-    public double getPrecio() {
-        return this.precio;
+    public String getPassword() {
+        return this.Password;
     }
 
-    public void setPrecio(double precio) {
-        this.precio = precio;
+    public void setPassword(String Password) {
+        this.Password = Password;
     }
-    
 
     
     
