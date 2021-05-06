@@ -23,7 +23,7 @@ jobs:
       run: mvn -B package --file api_crud/pom.xml -DHEROKU_PSS_DB=${{ secrets.HEROKU_PSS_DB }} -DPORT=${{ secrets.PORT }}
 
     - name: Docker Build
-      run: docker build -f demomvc/Dockerfile .
+      run: docker build -f "api_crud/Dockerfile" .
 
     - name: Build, Push and Release a Docker container to Heroku Frontend
       uses: gonuit/heroku-docker-deploy@v1.3.2 
