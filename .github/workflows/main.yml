@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [ master ]
 
+env:
+  HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+  HEROKU_APP_NAME: ${{ 'app-spring-progrados' }}
+
 jobs:
   build_webapp:
     runs-on: ubuntu-latest
@@ -18,24 +22,41 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-    
-    - name: Build with Maven Frontend
-      run: mvn -B package --file api_crud/pom.xml -DHEROKU_PSS_DB=${{ secrets.HEROKU_PSS_DB }} -DPORT=${{ secrets.PORT }}
 
-    - name: Build, Push and Release a Docker container to Heroku Frontend
-      uses: gonuit/heroku-docker-deploy@v1.3.2 
-      with:
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml
 
-          email: ${{ secrets.HEROKU_EMAIL }}
+    - name: Docker build
+      run: docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
 
-          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-          
-          heroku_app_name: ${{ secrets.app-srping-progra2T }}
+    - name: Publish
+      run: |
+        heroku container:push web -a $HEROKU_APP_NAME
+        heroku container:release web -a $HEROKU_APP_NAME
 
-          dockerfile_directory: ./api_crud
+# on:
+#   push:
+#     branches:
+#       - main
 
-          dockerfile_name: DockerFile
+# name: Deploy to heroku
 
-          docker_options: "--no-cache"
+# env:
+#   HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+#   HEROKU_APP_NAME: ${{ 'app-srping-progra2' }}
 
-          process_type: web  
+# jobs:
+#   build_webapp:
+#     runs-on: ubuntu-latest
+#     steps:
+
+#     - name: Checkout
+#       uses: actions/checkout@v2
+
+#     - name: Docker build
+#       run: docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
+
+#     - name: Publish
+#       run: |
+#         heroku container:push web -a $HEROKU_APP_NAME
+#         heroku container:release web -a $HEROKU_APP_NAME
